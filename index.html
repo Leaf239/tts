@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>텍스트를 음성으로 변환</title>
+</head>
+<body>
+    <h1>TTS</h1>
+    <form>
+        <label for="textInput">Input Text: </label>
+        <input type="text" id="textInput" placeholder="텍스트를 입력하세요"><br><br>
+        
+        <label for="languageSelect">Select Language: </label>
+        <select id="languageSelect">
+            <option value="ko-KR">Korean</option>
+            <option value="en-US">English</option>
+            <option value="">Other</option>
+            <!-- 필요에 따라 다른 언어를 추가할 수 있습니다 -->
+        </select><br><br>
+        
+        <button type="button" onclick="speakText()">Play</button>
+    </form>
+
+    <script>
+        function speakText() {
+            var text = document.getElementById("textInput").value;
+            var selectedLang = document.getElementById("languageSelect").value;
+            
+            if (text === "") {
+                alert("Please input Text.");
+                return;
+            }
+
+            var speech = new SpeechSynthesisUtterance();
+            speech.text = text;
+            speech.lang = selectedLang;
+            speech.rate = 1; // 속도 조절 (기본값은 1)
+            window.speechSynthesis.speak(speech);
+        }
+    </script>
+</body>
+</html>
